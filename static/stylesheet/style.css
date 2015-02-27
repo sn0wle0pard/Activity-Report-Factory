@@ -1,0 +1,56 @@
+.whole_form{
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.input_form {
+    max-width: 300px;
+    margin: 0 auto;
+    float: left;
+    margin-left: 30px;
+}
+
+.label_s{
+    margin-right: 10px;
+}
+
+#KING_FORM {
+    width: 100px;
+    float: left;
+    margin-right: 20px;
+}
+
+#KING {
+    width: 100px;
+}
+
+#WRT_DATE{
+    width: 100px;
+}
+
+#ACTIVITY_CONTENTS {
+    height: 100px;
+}
+
+.title_text {
+    text-align: center;
+}
+
+.acting_members {
+    max-width: 600px;
+    margin: 0 auto;
+    float: left;
+}
+
+/** STUDENTS_FORM **/
+
+.STD_INPUT {
+    width: 100px;
+    float: left;
+    margin: 10px;
+}
+
+
+
+
+

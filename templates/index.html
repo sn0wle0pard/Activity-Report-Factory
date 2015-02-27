@@ -1,0 +1,73 @@
+<!doctype html>
+<html>
+    <head>
+        <title>Upload new File</title>
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+        <script type="text/javascript" src="{{ url_for('static', filename='javascript/common.js') }}"></script>
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+        <script type="text/javascript" src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+        <link rel="stylesheet" href="{{ url_for('static', filename='stylesheet/style.css') }}" />
+    </head>
+    </head>
+    <body>
+        <h1 class="title_text">활동내역서 공장 시스템</h1>
+        <form action="/make/" enctype="multipart/form-data" method="POST" class="whole_form" id="sending_form">
+        <div class="input_form">
+            <div class="form-group" id="KING_FORM">
+                <label for="KING" class="label_s">동아리 회장</label>
+                <input type="text" class="form-control" name="KING" id="KING" placeholder="동아리 회장">
+            </div>
+            <div class="form-group">
+                <label for="WRT_DATE" class="label_s">작성일</label>
+                <input type="text" class="form-control" name="WRT_DATE" id="WRT_DATE" placeholder="작성일">
+            </div>
+            <div class="form-group">
+                <label for="KING_L">동아리 명</label>
+                <input type="text" class="form-control" name="CLUB_NAME" id="CLUB_NAME" placeholder="동아리 명">
+            </div>
+            <div class="form-group">
+                <label for="KING_L">활동 일시</label>
+                <input type="text" class="form-control" name="ACT_DATE" id="ACT_DATE" placeholder="활동 일시">
+            </div>
+            <div class="form-group">
+                <label for="KING_L">활동 장소</label>
+                <input type="text" class="form-control" name="PLACE" id="PLACE" placeholder="활동 장소">
+            </div>
+            <div class="form-group">
+                <label for="KING_L">활동 내용</label>
+                <input type="text" class="form-control" name="ACTIVITY_CONTENTS" id="ACTIVITY_CONTENTS" placeholder="활동 내용">
+            </div>
+        
+        <p>여기다 사진을 드래그하세요</p>
+        <!---->
+            <p>활동 사진</p>
+            <input type=file name="ACT_PIC">
+            <p>단체 사진</p>
+            <input type=file name="TOGETHER_PIC">
+            </br>
+            <input type=submit value=Upload>
+        
+        </div>
+
+        <div class="acting_members" id="form0">
+            <div class="form-group">
+                <div class="STD_INPUT">
+                    <input type="text" class="form-control" name="MEMBERS_NAME0" id="ACT_MEMBERS_NAME0" placeholder="이름" onFocus="copy();">
+                </div>
+                <div class="STD_INPUT">
+                    <input type="text" class="form-control" name="MEMBERS_NUM0" id="ACT_MEMBERS_NUM0" placeholder="학번">
+                </div>
+                <div class="STD_INPUT">
+                    <label>
+                        <input type="checkbox" name="IS_ON0"> 참석 여부
+                    </label>
+                </div>
+                <div class="STD_INPUT">
+                    <input type="text" class="form-control" name="MEMBERS_ETC0" id="ACT_MEMBERS_ETC0" placeholder="비고">
+                </div>
+            </div>
+        </div>
+
+       </form>
+    </body>
+</html>
