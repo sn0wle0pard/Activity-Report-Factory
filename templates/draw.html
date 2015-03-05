@@ -1,0 +1,47 @@
+<html>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.4.2/p5.js"></script>
+<script type="text/javascript">
+var bg, ufo, img;
+
+
+function preload() {
+  createCanvas(800,600);
+  img = loadImage("{{PIC_NAME}}");
+}
+
+function setup() {
+  background(img, 10,10);
+}
+
+function draw() {
+    noFill();
+}
+
+function mousePressed() {
+    stroke(240, 50, 0);
+    noFill();
+    ellipse(mouseX, mouseY, 80, 80);
+}
+
+function saveCan(){
+    var mimeType='image/png';
+    var downloadMime = 'image/octet-stream';
+    var filename = "pic.png"
+    var imageData = this.canvas.toDataURL(mimeType);
+    imageData = imageData.replace(mimeType, downloadMime);
+
+    document.getElementById('my_hidden').value = imageData //canvas.toDataURL(mimeType);;
+    document.forms["sending_form"].submit();
+    //p5.prototype.downloadFile(imageData, filename);
+    //save();
+}
+</script>
+<body>
+<img id="myImage">
+<button style="width:200px; height:50px" onclick="saveCan();"></button>
+<form action="/complete/" enctype="multipart/form-data" method="POST" class="whole_form" id="sending_form">
+<input type=hidden id="my_hidden" name="hidden_file"></input>
+<input type=hidden id="date" name="today_date" value="{{TODAY}}"></input>
+</form>
+</body>
+</html>

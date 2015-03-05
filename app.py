@@ -5,6 +5,7 @@ import os, shutil, datetime
 import random
 import sys
 import zipfile
+import base64
 from shutil import make_archive
 reload(sys)
 sys.setdefaultencoding('utf-8')
@@ -13,6 +14,7 @@ app = Flask(__name__)
 
 UPLOAD_FOLDER = './image'
 DOCX_FOLDER = './temp'
+
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 app.config['DOCX_FOLDER'] = DOCX_FOLDER
 
@@ -93,12 +95,12 @@ def assemble():
                     break
             if flag is 1:
                 break
-        toady_date = today.strftime("%Y%m%d_"+str(i))
+        today_date = today.strftime("%Y%m%d_"+str(i))
         for src, dst in folders:
-            shutil.copytree(src,dst+toady_date)
+            shutil.copytree(src,dst+today_date)
         
 #MODIFYING
-        wordFile = open('temp/form_'+toady_date+'/word/document.xml', 'r')
+        wordFile = open('temp/form_'+today_date+'/word/document.xml', 'r')
         print wordFile
         line = wordFile.read()
 
@@ -130,23 +132,48 @@ def assemble():
         t2 = t2.replace('$TYPE$', str(check_type))
 
         wordFile.close()
-        writeFile = open('temp/form_'+toady_date+'/word/document.xml', 'w')
+        writeFile = open('temp/form_'+today_date+'/word/document.xml', 'w')
         writeFile.write(t2)
         writeFile.close()
 #PUT_IMAGE
-        os.unlink('temp/form_'+toady_date+'/word/media/image1.jpeg')
-        os.rename('image/'+filename_img1, 'temp/form_'+toady_date+'/word/media/image1.jpeg')
-        os.unlink('temp/form_'+toady_date+'/word/media/image2.jpeg')
-        os.rename('image/'+filename_img2, 'temp/form_'+toady_date+'/word/media/image2.jpeg')
+        os.unlink('temp/form_'+today_date+'/word/media/image1.jpeg')
+        os.rename('image/'+filename_img1, 'temp/form_'+today_date+'/word/media/image1.jpeg')
+        os.unlink('temp/form_'+today_date+'/word/media/image2.jpeg')
+        os.rename('image/'+filename_img2, 'temp/form_'+today_date+'/word/media/image2.jpeg')
 
-#ZIP FILE
-        shutil.make_archive("temp/form_"+toady_date, "zip", "temp/form_"+toady_date)
-        os.rename("temp/form_"+toady_date+".zip", "temp/form_"+toady_date+".docx")
-        
 #RETURN
-        return render_template('check.html', KING=id_king, WRT_DATE=id_wrt_date,
-            CLUB_NAME=id_club_name, ACT_DATE=id_act_date, PLACE=id_place,
-             ACTIVITY_CONTENTS=id_act_conts, FILE_NAME='form_'+toady_date+'.docx')
+        return render_template('draw.html', PIC_NAME='../temp/form_'+today_date+'/word/media/image2.jpeg', TODAY=today_date)
+        #return render_template('check.html', KING=id_king, WRT_DATE=id_wrt_date,
+        #    CLUB_NAME=id_club_name, ACT_DATE=id_act_date, PLACE=id_place,
+        #     ACTIVITY_CONTENTS=id_act_conts, FILE_NAME='form_'+today_date+'.docx')
+
+
+@app.route('/complete/', methods=['GET','POST'])
+def complete():
+    if request.method=='POST':
+        today_date = request.form['today_date']
+        image_file = request.form['hidden_file']
+        file = open("./image/image2.jpeg", 'wb')
+        target_decode = image_file.split(",")[1]
+        file.write(base64.b64decode(target_decode))
+
+        file.close()
+        image_name="image2.jpeg"
+        os.unlink('temp/form_'+today_date+'/word/media/image2.jpeg')
+        os.rename('image/'+image_name, 'temp/form_'+today_date+'/word/media/image2.jpeg')
+
+    #ZIP FILE
+        shutil.make_archive("temp/form_"+today_date, "zip", "temp/form_"+today_date)
+        os.rename("temp/form_"+today_date+".zip", "temp/form_"+today_date+".docx")
+
+        return render_template('complete.html', FILE_NAME='form_'+today_date+'.docx')
+
+
+@app.route('/temp/<date>/word/media/<filename>')
+def download2(date, filename):
+    IMG_FOLDER = './temp/'+date+'/word/media/'
+    app.config['IMG_FOLDER'] = IMG_FOLDER
+    return send_from_directory(app.config['IMG_FOLDER'], filename)
 
 
 @app.route('/temp/<filename>')
