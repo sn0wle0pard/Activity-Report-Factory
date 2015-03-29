@@ -14,6 +14,10 @@
     margin-right: 10px;
 }
 
+.time-group {
+    margin: 0 auto;
+}
+
 #KING_FORM {
     width: 100px;
     float: left;
@@ -30,6 +34,51 @@
 
 #ACTIVITY_CONTENTS {
     height: 100px;
+}
+
+#ACT_DATE_Y {
+    width: 80px;
+    float: left;
+}
+
+#ACT_DATE_M {
+    width: 80px;
+    float: left;
+}
+
+#ACT_DATE_D {
+    width: 80px;
+}
+
+#START_TIME_H {
+    width: 50px;
+    float: left;
+    margin-right: 10px;
+}
+
+#START_TIME_M {
+    width: 50px;
+    float: left;
+    margin-right: 10px;
+}
+
+#END_TIME_H {
+    width: 50px;
+    float: left;
+    margin-right: 10px;
+}
+
+#END_TIME_M {
+    width: 50px;
+}
+
+#APMBUTTON {
+    margin-bottom: 10px;
+}
+
+.between_box {
+    margin-right: 10px;
+    float: left;
 }
 
 .title_text {

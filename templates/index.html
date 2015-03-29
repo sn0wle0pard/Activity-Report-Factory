@@ -26,8 +26,30 @@
                 <input type="text" class="form-control" name="CLUB_NAME" id="CLUB_NAME" placeholder="동아리 명">
             </div>
             <div class="form-group">
-                <label for="KING_L">활동 일시</label>
-                <input type="text" class="form-control" name="ACT_DATE" id="ACT_DATE" placeholder="활동 일시">
+                <p>활동 날짜</p>
+                <input type="text" class="form-control" name="ACT_DATE_Y" id="ACT_DATE_Y" placeholder="년도">
+                <input type="text" class="form-control" name="ACT_DATE_M" id="ACT_DATE_M" placeholder="달">
+                <input type="text" class="form-control" name="ACT_DATE_D" id="ACT_DATE_D" placeholder="일">
+            </div>
+            <div class="form-group">
+                <p>활동 시간</p>
+                
+                <div class="btn-group" data-toggle="buttons" id="APMBUTTON">
+                    <label class="btn btn-default">
+                        <input type="radio" id="q156" name="TIME_APM" value="AM" /> AM
+                    </label> 
+                    <label class="btn btn-default">
+                        <input type="radio" id="q157" name="TIME_APM" value="PM" /> PM
+                    </label>
+                </div>
+                </br>
+                <div class="time-group">
+                    <input type="text" class="form-control" name="START_TIME_H" id="START_TIME_H" placeholder="시간">
+                    <input type="text" class="form-control" name="START_TIME_M" id="START_TIME_M" placeholder="분">
+                    <p class="between_box">~</p>
+                    <input type="text" class="form-control" name="END_TIME_H" id="END_TIME_H" placeholder="시간">
+                    <input type="text" class="form-control" name="END_TIME_M" id="END_TIME_M" placeholder="분">
+                </div>
             </div>
             <div class="form-group">
                 <label for="KING_L">활동 장소</label>
@@ -36,13 +58,13 @@
              <div class="form-group">
                 <label for="KING_L">활동 유형</label>
                 <div class="btn-group" data-toggle="buttons">
-                <label class="btn btn-default">
-                    <input type="radio" id="q156" name="CHECK_TYPE" value="A" /> A
-                </label> 
-                <label class="btn btn-default">
-                    <input type="radio" id="q157" name="CHECK_TYPE" value="B" /> B
-                </label>
-            </div>
+                    <label class="btn btn-default">
+                        <input type="radio" id="q156" name="CHECK_TYPE" value="A" /> A
+                    </label> 
+                    <label class="btn btn-default">
+                        <input type="radio" id="q157" name="CHECK_TYPE" value="B" /> B
+                    </label>
+                </div>
             </div>
             <div class="form-group">
                 <label for="KING_L">활동 내용</label>
